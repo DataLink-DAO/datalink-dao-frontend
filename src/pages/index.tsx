@@ -1,7 +1,39 @@
-import { Heading } from "@chakra-ui/react";
+import React from "react";
+import {
+  Card,
+  CardBody,
+  CardHeader,
+  Container,
+  Heading,
+} from "@chakra-ui/react";
 import Head from "next/head";
+import MetamaskConnectButton from "./components/MetamaskConnectButton";
+import { useRouter } from "next/router";
+import { useWallet } from "./context/MetamaskProvider";
+import * as R from "ramda";
 
 const Home = () => {
+  const router = useRouter();
+  const [loading, setLoading] = React.useState(true);
+  const { address } = useWallet();
+
+  React.useEffect(() => {
+    const unconnected =
+      R.isNil(window.ethereum.selectedAddress) ||
+      R.isEmpty(window.ethereum.selectedAddress);
+
+    if (unconnected) {
+      setLoading(false);
+      return;
+    }
+
+    setLoading(false);
+  }, [address]);
+
+  if (loading) {
+    return <></>;
+  }
+
   return (
     <>
       <Head>
@@ -10,9 +42,38 @@ const Home = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        <Heading as="h1">Welcome</Heading>
-      </main>
+      <Container
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        height="100%"
+      >
+        <Card maxWidth="500" width="100%" alignItems="stretch">
+          <CardHeader paddingBottom={0}>
+            <Heading as="h1" textAlign="center">
+              DataLink DAO
+            </Heading>
+            <div
+              style={{
+                backgroundColor: "#e2e2e2",
+                height: "1px",
+                marginTop: 20,
+              }}
+            />
+          </CardHeader>
+          <CardBody display="flex" alignItems="flex-end">
+            <MetamaskConnectButton style={{ width: "100%" }} />
+          </CardBody>
+        </Card>
+        <style jsx global>{`
+          body {
+            height: 100%;
+          }
+          #__next {
+            height: 100%;
+          }
+        `}</style>
+      </Container>
     </>
   );
 };
