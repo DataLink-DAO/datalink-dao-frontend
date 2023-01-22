@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import React from "react";
 
 type MetamaskMaskProviderValues = {
-  address: string | null | undefined;
+  address: string | null;
   setAddress: () => void;
   disconnect: () => void;
 };
