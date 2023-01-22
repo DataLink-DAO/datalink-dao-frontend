@@ -13,9 +13,9 @@ import Link from "next/link";
 
 /**
  * Component that renders:
- * 1. a button that connects to Metamask
- * 2. a button with the current address when connected and disconnects when clicked
- * 3. text that tells the user to install Metamask
+ * a. a button that connects to Metamask
+ * b. a button with the current address when connected and disconnects when clicked
+ * c. text that tells the user to install Metamask
  */
 const MetamaskConnectButton: React.FC<{
   style?: React.CSSProperties;

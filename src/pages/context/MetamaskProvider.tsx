@@ -38,7 +38,7 @@ export const MetamaskProvider: React.FC<{ children: React.ReactNode }> = ({
         const changedAddress = accounts[0] ?? null;
         if (!changedAddress) {
           setAddress(null);
-          if (!changedAddress && router.pathname !== "/") {
+          if (router.pathname !== "/") {
             router.push("/");
           }
           return;
