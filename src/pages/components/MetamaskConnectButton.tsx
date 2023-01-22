@@ -21,12 +21,12 @@ const MetamaskConnectButton: React.FC<{
   style?: React.CSSProperties;
 }> = ({ style }) => {
   const { address, setAddress, disconnect } = useWallet();
-  const [metamaskUnavailable, setMetaMaskUnavailable] = React.useState(false);
+  const [metamaskUnavailable, setMetamaskUnavailable] = React.useState(false);
   // const [open, setOpen] = React.useState(false);
 
   React.useEffect(() => {
     if (!window.ethereum) {
-      setMetaMaskUnavailable(true);
+      setMetamaskUnavailable(true);
     }
   }, []);
 
