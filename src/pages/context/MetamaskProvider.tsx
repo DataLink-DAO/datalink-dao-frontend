@@ -32,15 +32,36 @@ export const MetamaskProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   }, []);
 
+  /**
+   * - redirect to dashboard on connected
+   * - redirect to home on unconnected
+   * */
+  const redirectOnAction = React.useCallback(() => {
+    if (!address) {
+      if (router.pathname.startsWith("/dashboard")) {
+        router.push("/");
+        return;
+      }
+    }
+
+    if (address) {
+      if (router.pathname === "/") {
+        router.push("/dashboard");
+        return;
+      }
+    }
+  }, [address, router]);
+
+  React.useEffect(() => {
+    redirectOnAction();
+  }, [redirectOnAction]);
+
   React.useEffect(() => {
     if (window.ethereum) {
       window.ethereum.on("accountsChanged", (accounts: string[]) => {
         const changedAddress = accounts[0] ?? null;
         if (!changedAddress) {
           setAddress(null);
-          if (router.pathname !== "/") {
-            router.push("/");
-          }
           return;
         }
         setAddress(changedAddress);
@@ -60,7 +81,6 @@ export const MetamaskProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const handleDisconnect = () => {
     setAddress(null);
-    router.push("/");
   };
 
   return (

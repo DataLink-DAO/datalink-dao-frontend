@@ -23,15 +23,12 @@ const Home = () => {
       R.isEmpty(window.ethereum.selectedAddress);
 
     if (unconnected) {
-      return setLoading(false);
-    }
-
-    if (window.ethereum && address === window.ethereum.selectedAddress) {
-      router.push("/dashboard");
+      setLoading(false);
+      return;
     }
 
     setLoading(false);
-  }, [address, router]);
+  }, [address]);
 
   if (loading) {
     return <></>;
