@@ -18,13 +18,15 @@ const Home = () => {
   const { address } = useWallet();
 
   React.useEffect(() => {
-    const unconnected =
-      R.isNil(window.ethereum.selectedAddress) ||
-      R.isEmpty(window.ethereum.selectedAddress);
+    if (window.ethereum) {
+      const unconnected =
+        R.isNil(window.ethereum.selectedAddress) ||
+        R.isEmpty(window.ethereum.selectedAddress);
 
-    if (unconnected) {
-      setLoading(false);
-      return;
+      if (unconnected) {
+        setLoading(false);
+        return;
+      }
     }
 
     setLoading(false);
