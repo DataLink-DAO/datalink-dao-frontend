@@ -1,5 +1,5 @@
 import { Box, Container } from "@chakra-ui/react";
-import MetamaskConnectButton from "../components/MetamaskConnectButton";
+import MetamaskConnectButton from "../../components/MetamaskConnectButton";
 
 const Dashboard = () => {
   return (
