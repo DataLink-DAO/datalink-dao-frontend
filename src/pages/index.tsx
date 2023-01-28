@@ -7,9 +7,9 @@ import {
   Heading,
 } from "@chakra-ui/react";
 import Head from "next/head";
-import MetamaskConnectButton from "./components/MetamaskConnectButton";
+import MetamaskConnectButton from "../components/MetamaskConnectButton";
 import { useRouter } from "next/router";
-import { useWallet } from "./context/MetamaskProvider";
+import { useWallet } from "../context/MetamaskProvider";
 import * as R from "ramda";
 
 const Home = () => {

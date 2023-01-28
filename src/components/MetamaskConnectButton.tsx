@@ -17,6 +17,7 @@ import Link from "next/link";
  * - a button with the current address when connected and disconnects when clicked
  * - a button that tells the user to install Metamask and opens new tab to Metamask website when clicked
  */
+
 const MetamaskConnectButton: React.FC<{
   style?: React.CSSProperties;
 }> = ({ style }) => {
