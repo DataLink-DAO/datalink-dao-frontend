@@ -23,7 +23,7 @@ const About = () => {
         <SimpleGrid
           spacing={4}
           templateColumns="repeat(auto-fill, minmax(750px, 1fr))"
-          margin="15em"
+          margin="5em"
         >
 
           <Card w="100%" alignItems="center" mx="auto">
@@ -41,18 +41,23 @@ const About = () => {
             </CardHeader>
           </Card>
 
-          <Card>
-            <Image src={agreement} alt="logo" width={600} height={600} />
+          <Card alignItems="center">
+            <Image src={agreement} alt="logo" width={800} height={800} />
           </Card>
           
-        </SimpleGrid>
-      </div>
+      <br />
+      <br />
+      <br />
 
-      <Card fontSize="3xl" w="100%" h="200px" maxW="960px" mx="auto">
+      <Card marginLeft="5em" fontSize="3xl" w="100%" alignItems="center" mx="auto">
         Building the next generation of data validation and data-sharing tools
-        and infrastructure. Contact support@datalinkdao.com to talk more about
-        our solutions in data validation.
+        and infrastructure. 
+        <br />< br/>
+        <p>Contact support@datalinkdao.com to talk more about
+        our solutions in data validation.</p>
       </Card>
+      </SimpleGrid>
+      </div>
 
       <br />
       

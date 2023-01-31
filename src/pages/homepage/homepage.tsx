@@ -3,7 +3,6 @@ import DATADAO from './datalink.jpg'
 import DAL_rvsd from "../../components/DAL_rvsd.png";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-// import Button1 from "@/components/button1";
 import { Button } from "@chakra-ui/react";
 import { useRouter } from 'next/router'
 import { Card } from "@chakra-ui/react";

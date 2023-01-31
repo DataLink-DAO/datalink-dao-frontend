@@ -54,6 +54,12 @@ export default function Nav() {
             <Link href="/about">About</Link>
             <Link href="/dao">Join The DAO</Link>
 
+            <Link href="/pubdashboard">Manage</Link>
+            <Link href="/memdashboard">Dashboard</Link>
+            <Link href="/create">Create</Link>
+            <Link href="/verify">Verify</Link>
+            <Link href="/governance">Governance</Link>
+
               <Button onClick={toggleColorMode}>
                 {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
               </Button>
