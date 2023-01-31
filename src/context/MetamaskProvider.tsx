@@ -1,8 +1,11 @@
 import { useRouter } from "next/router";
 import React from "react";
+const { ethers } = require("ethers");
+import { PUBLISHER_NFT_ABI } from "../abis/PublisherNft";
 
 type MetamaskMaskProviderValues = {
   address: string | null;
+  contractPublisher: string | null;
   setAddress: () => void;
   disconnect: () => void;
 };
@@ -25,10 +28,13 @@ export const MetamaskProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const router = useRouter();
   const [address, setAddress] = React.useState<string | null>(null);
-
+  const [contractPublisher, setContractPublisher] = React.useState<
+    string | null
+  >(null);
   React.useEffect(() => {
     if (window.ethereum && window.ethereum.selectedAddress) {
       setAddress(window.ethereum.selectedAddress);
+      handleSetPublisherContract();
     }
   }, []);
 
@@ -69,13 +75,32 @@ export const MetamaskProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   }, [router]);
 
-  const handleSetAddress = () => {
+  const handleSetAddress = async () => {
     if (window.ethereum) {
+      handleSetPublisherContract();
       window.ethereum
         .request({ method: "eth_requestAccounts" })
         .then((result: string[]) => {
           setAddress(result[0]);
         });
+    }
+  };
+
+  const handleSetPublisherContract = async () => {
+    if (window.ethereum) {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const { chainId } = await provider.getNetwork();
+      if (chainId == "3141") {
+        const deployedPublisherContract =
+          "0x7bfbD50D127c3e3e29A61Badf083F5CE2A0D5170";
+        const signer = provider.getSigner();
+        let contract = new ethers.Contract(
+          deployedPublisherContract,
+          PUBLISHER_NFT_ABI,
+          signer
+        );
+        setContractPublisher(contract);
+      }
     }
   };
 
@@ -87,6 +112,7 @@ export const MetamaskProvider: React.FC<{ children: React.ReactNode }> = ({
     <MetamaskContext.Provider
       value={{
         address,
+        contractPublisher,
         setAddress: handleSetAddress,
         disconnect: handleDisconnect,
       }}
