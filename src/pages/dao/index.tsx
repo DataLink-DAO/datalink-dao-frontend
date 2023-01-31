@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import {
+  Box,
   Button,
   Card,
   CardBody,
@@ -18,9 +19,12 @@ const JoinDao = () => {
 
   return (
     <div>
+
       <Navbar />
+
       <div className="DatalinkDAO">
-      <Card marginTop="5rem" w="50%" alignItems="center" mx="auto">
+
+        <Card marginTop="5rem" w="50%" alignItems="center" mx="auto">
             <CardHeader>
               <Heading size="lg" marginTop="5rem" w="100%" alignItems="center" mx="auto">
                 {" "}
@@ -32,40 +36,42 @@ const JoinDao = () => {
                 The DataLink DAO will monetize anonymous data-sharing, and provide a powerful tokenization platform for credentials, documents, and other data. 
               </Text>
             </CardHeader>
-        </Card>
+          </Card>
 
         <br />
         <br />
+
         <SimpleGrid
           spacing={4}
+          columns={2}
           templateColumns="repeat(auto-fill, minmax(750px, 1fr))"
           margin="5em"
         >
-        <Card fontSize="3em" alignItems="center" justifyContent="center" >
+        <Card alignItems="center" justifyContent="center" fontSize="3em">
 
           {/* <Image /> */}
 
           <h2>Join DataLink DAO!</h2>
           <br />
-          <Card>
+          <Box>
           {/* <Image /> */}
 
           <Button bg="red" color="white" alignItems="center" justifyContent="center" onClick={() => router.push('/dao')}>
             {/* <Button1 /> */}
             Join the DAO as a DAO Member
           </Button>
-          </Card>
+          </Box>
 
           <br />
 
-          <Card>
+          <Box>
           {/* <Image /> */}
 
           <Button bg="blue" color="white" alignItems="center" justifyContent="center" onClick={() => router.push('/dao')}>
             {/* <Button1 /> */}
             Join the DAO as Publisher
           </Button>
-          </Card>
+          </Box>
           
           <br />
           

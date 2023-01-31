@@ -56,11 +56,13 @@ import Dropzone from 'react-dropzone'
         </div>
 
         {/*SEARCH BOX*/}
+        {/*HARDCODED*/}
         <Input marginLeft="2.5rem" w="50%" placeholder='Search for a credential ID' />
 
         <br />
         <br />
         {/*FILE UPLOAD */}
+        {/*NEEDS TO BE TEMP STORED UNTIL VALIDATED*/}
         <div>
             <Dropzone onDrop={acceptedFiles => console.log(acceptedFiles)}>
                 {({getRootProps, getInputProps}) => (
@@ -69,7 +71,7 @@ import Dropzone from 'react-dropzone'
                         <input {...getInputProps()} />
                         <p>Click this text to select file or Drag n Drop file below to validate</p>
                         <br />
-                        {/*vvv this card does absolutely nothing...vvv */}
+                        {/*vvv this card does absolutely nothing...only for show vvv */}
                         <Card fontSize="9xl" alignItems="center"  w="100%" h="200px" maxW="960px" mx="auto">+
                         </Card>
                     </div>
@@ -82,6 +84,7 @@ import Dropzone from 'react-dropzone'
         <br />
         <br />
 
+        {/*HARDCODED*/}
         <TableContainer>
             <Table variant='simple'>
                 <TableCaption>Top Data Publishers in DataLink DAO</TableCaption>

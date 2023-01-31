@@ -9,12 +9,10 @@ import Navbar from "@/components/Navbar";
 const Dashboard = () => {
   return (
     <Box>
-      <Container display="flex" flexDirection="column">
         {/* <Navbar /> */}
         <Homepage />
         {/* <MetamaskConnectButton /> */}
         <Footer />
-      </Container>
     </Box>
   );
 };

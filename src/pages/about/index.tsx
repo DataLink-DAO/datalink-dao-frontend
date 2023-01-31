@@ -21,6 +21,7 @@ const About = () => {
       <div className="sample">
 
         <SimpleGrid
+          columns={2}
           spacing={4}
           templateColumns="repeat(auto-fill, minmax(750px, 1fr))"
           margin="5em"

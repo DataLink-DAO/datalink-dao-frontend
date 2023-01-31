@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@chakra-ui/react";
 import { useRouter } from 'next/router'
 import { Card } from "@chakra-ui/react";
+import { Container } from "@chakra-ui/react";
 
 
 const Homepage = () => {
@@ -13,27 +14,37 @@ const Homepage = () => {
 
 return (
           <div className="homepage">
+
             <Navbar />
+
+            <Container maxW='lg'>
             {/* DATADAO LOGO */}
               <br />
               <div className="logo">
                 <Image src={DAL_rvsd} alt="logo" width={500} height={500}/>
               </div>
 
-              <Card fontSize="2xl" w="100%" h="200px" maxW="960px" mx="auto">
+              <br /><br />
+
+              <Card fontSize="2xl" w="100%" mx="auto">
                  Building the next generation of data validation and data-sharing tools
-                 and infrastructure. Contact support@datalinkdao.com to talk more about
+                 and infrastructure.
+              </Card>
+
+              <br /><br />
+
+              <Card fontSize="2xl" w="100%" mx="auto">
+                  Contact support@datalinkdao.com to talk more about
                  our solutions in data validation.
               </Card>
 
-              <br />
+              <br /><br />
 
-              <Card>
-                <Button bg="blue" color="white" fontSize="3xl" alignItems="center" justifyContent="center" onClick={() => router.push('/about')}>
+                <Button bg="blue" color="white" w="45%" fontSize="3xl" alignItems="center" justifyContent="center" onClick={() => router.push('/about')}>
                   {/* <Button1 /> */}
                   Learn More
                 </Button>
-              </Card>
+
 
               <div className="homepage-footer">
                 {/* <Footer /> */}
@@ -44,6 +55,7 @@ return (
                 <br />
                 <br />
               </div>
+              </Container>
         </div>
     )
 }
