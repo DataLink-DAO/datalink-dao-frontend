@@ -1,7 +1,7 @@
 import Navbar from "@/components/Navbar";
 import React, { useState } from "react";
 import Image from "next/image";
-import { useWallet } from "../context/MetamaskProvider";
+import { useWallet } from "../../../context/MetamaskProvider";
 import MetamaskConnectButton from "@/components/MetamaskConnectButton";
 import {
   Card,
@@ -21,42 +21,43 @@ import {
   Input,
   FormHelperText,
   Tooltip,
+  InputGroup,
+  styled,
 } from "@chakra-ui/react";
 import { QuestionIcon } from "@chakra-ui/icons";
+import { useForm } from "react-hook-form";
+
+const StyledInputGroup = styled(InputGroup, {
+  baseStyle: {
+    flexDirection: "column",
+  },
+});
+
+const StyledFormLabel = styled(FormLabel, {
+  baseStyle: {
+    display: "flex",
+    alignItems: "center",
+    columnGap: 2,
+  },
+});
 
 const Createnft = () => {
   const [image, setImage] = useState(null);
   const [imageName, setImageName] = useState(null);
-  const [studentId, setStudentId] = useState(null);
-  const [walletId, setWalletId] = useState(null);
-  const [documentType, setDocumentType] = useState(null);
-  const [name, setName] = useState(null);
-  const [degree, setDegree] = useState(null);
-  const [major, setMajor] = useState(null);
-  const [minor, setMinor] = useState(null);
-  const [graduationDate, setGraduationDate] = useState(null);
-  const [GPA, setGPA] = useState(null);
-  const [diploma, setDiploma] = useState(null);
-  const [diplomaDate, setDiplomaDate] = useState(null);
   const [diplomaVerification, setDiplomaVerification] = useState(null);
   const [transcript, setTranscript] = useState(null);
-  console.log(
-    "walletId",
-    studentId,
-    walletId,
-    documentType,
-    documentType,
-    name,
-    degree,
-    major,
-    minor,
-    graduationDate,
-    GPA,
-    diploma,
-    diplomaDate,
-    diplomaVerification,
-    transcript
-  );
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = async (data) => {
+    console.log("data: ", data);
+    // TODO: Send data to backend or SC, await response and redirect to dashboard
+  };
 
   const handleImage = (event) => {
     setImage(event.target.files[0]);
@@ -94,7 +95,7 @@ const Createnft = () => {
           </Button>
 
           <Button colorScheme="twitter" isDisabled>
-            Upload csv file
+            Upload CSV file
           </Button>
         </Flex>
       </Box>
@@ -103,11 +104,7 @@ const Createnft = () => {
         {/* FORM */}
         <Box height="100%" w="100%" pb={10}>
           <Container>
-            <br />
-            <hr style={{ border: "1px solid #ccc" }} />
-            <br />
-
-            <FormControl id="studentid" p={1}>
+            <FormControl p={1}>
               <Flex alignContent="center">
                 <label htmlFor="formFileImage">+ Upload Diploma Image</label>
               </Flex>
@@ -121,7 +118,7 @@ const Createnft = () => {
               />
             </FormControl>
 
-            <FormControl id="studentid" p={1}>
+            <FormControl p={1}>
               <Flex alignContent="center">
                 <label htmlFor="formFileTranscript">+ Upload Transcripts</label>
               </Flex>
@@ -135,9 +132,9 @@ const Createnft = () => {
               />
             </FormControl>
 
-            <FormControl id="studentid" p={1}>
-              <Flex alignContent="center">
-                <FormLabel>Student ID</FormLabel>
+            <StyledInputGroup>
+              <StyledFormLabel>
+                <Text>Student ID</Text>
                 <Tooltip
                   hasArrow
                   label="A unique identifier for the student, such as a university-issued
@@ -147,18 +144,13 @@ const Createnft = () => {
                 >
                   <QuestionIcon color="blue.200" />
                 </Tooltip>
-              </Flex>
-              <Input
-                type="text"
-                onChange={(e) => {
-                  setStudentId(e.target.value);
-                }}
-              />
-            </FormControl>
+              </StyledFormLabel>
+              <Input {...register("studentId")} />
+            </StyledInputGroup>
 
-            <FormControl id="walletid" p={1}>
-              <Flex alignContent="center">
-                <FormLabel>Wallet ID</FormLabel>
+            <StyledInputGroup>
+              <StyledFormLabel>
+                <Text>Wallet ID</Text>
                 <Tooltip
                   hasArrow
                   label="Web3 wallet public address of recipient, if known."
@@ -167,18 +159,13 @@ const Createnft = () => {
                 >
                   <QuestionIcon color="blue.200" />
                 </Tooltip>
-              </Flex>
-              <Input
-                type="text"
-                onChange={(e) => {
-                  setWalletId(e.target.value);
-                }}
-              />
-            </FormControl>
+              </StyledFormLabel>
+              <Input {...register("walletId")} />
+            </StyledInputGroup>
 
-            <FormControl id="DocumentType" p={1}>
-              <Flex alignContent="center">
-                <FormLabel>Document Type</FormLabel>
+            <StyledInputGroup>
+              <StyledFormLabel>
+                <Text>Document Type</Text>
                 <Tooltip
                   hasArrow
                   label="Type of data or document being tokenized."
@@ -187,21 +174,18 @@ const Createnft = () => {
                 >
                   <QuestionIcon color="blue.200" />
                 </Tooltip>
-              </Flex>
-              <Select
-                placeholder="Select one"
-                onChange={(e) => setDocumentType(e.target.value)}
-              >
-                <option value="Diploma">Diploma</option>
-                <option value="Certification">Certification</option>
-                <option value="License">License</option>
-                <option value="Other">Other</option>
+              </StyledFormLabel>
+              <Select {...register("documentType")}>
+                <option value="diploma">Diploma</option>
+                <option value="certification">Certification</option>
+                <option value="license">License</option>
+                <option value="other">Other</option>
               </Select>
-            </FormControl>
+            </StyledInputGroup>
 
-            <FormControl id="Name" p={1}>
-              <Flex alignContent="center">
-                <FormLabel>Name</FormLabel>
+            <StyledInputGroup>
+              <StyledFormLabel>
+                <Text>Name</Text>
                 <Tooltip
                   hasArrow
                   label="The student's full name, including first, middle, and last names."
@@ -210,13 +194,13 @@ const Createnft = () => {
                 >
                   <QuestionIcon color="blue.200" />
                 </Tooltip>
-              </Flex>
-              <Input type="text" onChange={(e) => setName(e.target.value)} />
-            </FormControl>
+              </StyledFormLabel>
+              <Input {...register("name")} />
+            </StyledInputGroup>
 
-            <FormControl id="Degree" p={1}>
-              <Flex alignContent="center">
-                <FormLabel>Degree</FormLabel>
+            <StyledInputGroup>
+              <StyledFormLabel>
+                <Text>Degree</Text>
                 <Tooltip
                   hasArrow
                   label="The student's degree, such as Bachelor of Science or Master of Arts."
@@ -225,13 +209,13 @@ const Createnft = () => {
                 >
                   <QuestionIcon color="blue.200" />
                 </Tooltip>
-              </Flex>
-              <Input type="text" onChange={(e) => setDegree(e.target.value)} />
-            </FormControl>
+              </StyledFormLabel>
+              <Input {...register("degree")} />
+            </StyledInputGroup>
 
-            <FormControl id="Major" p={1}>
-              <Flex alignContent="center">
-                <FormLabel>Major</FormLabel>
+            <StyledInputGroup>
+              <StyledFormLabel>
+                <Text>Major</Text>
                 <Tooltip
                   hasArrow
                   label="The student's major field of study, such as Computer Science or English."
@@ -240,13 +224,13 @@ const Createnft = () => {
                 >
                   <QuestionIcon color="blue.200" />
                 </Tooltip>
-              </Flex>
-              <Input type="text" onChange={(e) => setMajor(e.target.value)} />
-            </FormControl>
+              </StyledFormLabel>
+              <Input {...register("major")} />
+            </StyledInputGroup>
 
-            <FormControl id="Minor" p={1}>
-              <Flex alignContent="center">
-                <FormLabel>Minor</FormLabel>
+            <StyledInputGroup>
+              <StyledFormLabel>
+                <Text>Minor</Text>
                 <Tooltip
                   hasArrow
                   label="The student's minor field of study, if applicable."
@@ -255,13 +239,13 @@ const Createnft = () => {
                 >
                   <QuestionIcon color="blue.200" />
                 </Tooltip>
-              </Flex>
-              <Input type="text" onChange={(e) => setMinor(e.target.value)} />
-            </FormControl>
+              </StyledFormLabel>
+              <Input {...register("minor")} />
+            </StyledInputGroup>
 
-            <FormControl id="GraduationDate" p={1}>
-              <Flex alignContent="center">
-                <FormLabel>Graduation Date</FormLabel>
+            <StyledInputGroup>
+              <StyledFormLabel>
+                <Text>Graduation Date</Text>
                 <Tooltip
                   hasArrow
                   label="The date the student graduated."
@@ -270,16 +254,13 @@ const Createnft = () => {
                 >
                   <QuestionIcon color="blue.200" />
                 </Tooltip>
-              </Flex>
-              <Input
-                type="text"
-                onChange={(e) => setGraduationDate(e.target.value)}
-              />
-            </FormControl>
+              </StyledFormLabel>
+              <Input {...register("graduationDate")} />
+            </StyledInputGroup>
 
-            <FormControl id="GPA" p={1}>
-              <Flex alignContent="center">
-                <FormLabel>GPA</FormLabel>
+            <StyledInputGroup>
+              <StyledFormLabel>
+                <Text>GPA</Text>
                 <Tooltip
                   hasArrow
                   label="The student's grade point average."
@@ -288,13 +269,13 @@ const Createnft = () => {
                 >
                   <QuestionIcon color="blue.200" />
                 </Tooltip>
-              </Flex>
-              <Input type="text" onChange={(e) => setGPA(e.target.value)} />
-            </FormControl>
+              </StyledFormLabel>
+              <Input {...register("gpa")} />
+            </StyledInputGroup>
 
-            <FormControl id="Diploma#" p={1}>
-              <Flex alignContent="center">
-                <FormLabel>Diploma #</FormLabel>
+            <StyledInputGroup>
+              <StyledFormLabel>
+                <Text>Diploma #</Text>
                 <Tooltip
                   hasArrow
                   label=" A unique identifier for the diploma, such as a serial number."
@@ -303,13 +284,13 @@ const Createnft = () => {
                 >
                   <QuestionIcon color="blue.200" />
                 </Tooltip>
-              </Flex>
-              <Input type="text" onChange={(e) => setDiploma(e.target.value)} />
-            </FormControl>
+              </StyledFormLabel>
+              <Input {...register("diploma")} />
+            </StyledInputGroup>
 
-            <FormControl id="DiplomaIssuedDate" p={1}>
-              <Flex alignContent="center">
-                <FormLabel>Diploma Issued Date</FormLabel>
+            <StyledInputGroup>
+              <StyledFormLabel>
+                <Text>Diploma Issued Date</Text>
                 <Tooltip
                   hasArrow
                   label="The date the diploma was issued."
@@ -318,16 +299,13 @@ const Createnft = () => {
                 >
                   <QuestionIcon color="blue.200" />
                 </Tooltip>
-              </Flex>
-              <Input
-                type="text"
-                onChange={(e) => setDiplomaDate(e.target.value)}
-              />
-            </FormControl>
+              </StyledFormLabel>
+              <Input {...register("diplomaDate")} />
+            </StyledInputGroup>
 
-            <FormControl id="DiplomaVerification" p={1}>
-              <Flex alignContent="center">
-                <FormLabel>Diploma Verification</FormLabel>
+            <StyledInputGroup>
+              <StyledFormLabel>
+                <Text>Diploma Verification</Text>
                 <Tooltip
                   hasArrow
                   label="A flag indicating whether the diploma has been
@@ -337,17 +315,16 @@ const Createnft = () => {
                 >
                   <QuestionIcon color="blue.200" />
                 </Tooltip>
-              </Flex>
-              <Select
-                placeholder="Select one"
-                onChange={(e) => setDiplomaVerification(e.target.value)}
-              >
+              </StyledFormLabel>
+              <Select {...register("diplomaVerification")}>
                 <option value="Yes">Yes</option>
-                <option value="No">No yet</option>
+                <option value="No">No Yet</option>
               </Select>
-            </FormControl>
+            </StyledInputGroup>
 
-            <Button colorScheme="twitter">Create NFT </Button>
+            <Button colorScheme="twitter" width="100%" marginTop={10}>
+              Create NFT
+            </Button>
           </Container>
         </Box>
 

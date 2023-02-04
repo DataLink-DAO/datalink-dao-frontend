@@ -1,15 +1,8 @@
 import React from "react";
-import {
-  Button,
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalHeader,
-  ModalOverlay,
-  Text,
-} from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
 import { useWallet } from "../context/MetamaskProvider";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 /**
  * Component that renders:
@@ -21,6 +14,7 @@ import Link from "next/link";
 const MetamaskConnectButton: React.FC<{
   style?: React.CSSProperties;
 }> = ({ style }) => {
+  const router = useRouter();
   const { address, setAddress, disconnect } = useWallet();
   const [metamaskUnavailable, setMetamaskUnavailable] = React.useState(false);
   // const [open, setOpen] = React.useState(false);
@@ -40,6 +34,19 @@ const MetamaskConnectButton: React.FC<{
   }
 
   if (address) {
+    console.log("router", router);
+    if (!router.pathname.startsWith("/dashboard")) {
+      return (
+        <Button
+          onClick={() => router.push("/dashboard")}
+          style={style}
+          colorScheme="orange"
+        >
+          Go To App
+        </Button>
+      );
+    }
+
     return (
       <Button
         onClick={disconnect}
@@ -52,38 +59,9 @@ const MetamaskConnectButton: React.FC<{
   }
 
   return (
-    <>
-      <Button onClick={setAddress} style={style} colorScheme="blue">
-        Connect Wallet
-      </Button>
-      {/** use the component below to display a modal for selected from Metamask, WalletConnect, etc if we ever decide to support them */}
-      {/* <Modal isOpen={open} onClose={() => setOpen(false)}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader paddingBottom={0}>
-            <Text>Select Provider:</Text>
-            <div
-              style={{
-                backgroundColor: "#e2e2e2",
-                height: "1px",
-                marginTop: 10,
-              }}
-            />
-          </ModalHeader>
-          <ModalBody padding="16px 24px">
-            <Button
-              onClick={() => {
-                setOpen(false);
-                setAddress();
-              }}
-              colorScheme="orange"
-            >
-              Metamask
-            </Button>
-          </ModalBody>
-        </ModalContent>
-      </Modal> */}
-    </>
+    <Button onClick={setAddress} style={style} colorScheme="blue">
+      Connect Wallet
+    </Button>
   );
 };
 

@@ -1,106 +1,75 @@
-import { ReactNode } from 'react';
 import {
   Box,
   Flex,
-  Avatar,
   Link,
   Button,
   Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuDivider,
-  useDisclosure,
   useColorModeValue,
   Stack,
   useColorMode,
-  Center,
-} from '@chakra-ui/react';
+} from "@chakra-ui/react";
 import DAL_rvsd from "./DAL_rvsd.png";
-// import Link from "next/link";
 import Image from "next/image";
-import MetamaskConnectButton from './MetamaskConnectButton';
-import { MoonIcon, SunIcon } from '@chakra-ui/icons';
+import MetamaskConnectButton from "./MetamaskConnectButton";
+import { useRouter } from "next/router";
 
-const NavLink = ({ children }: { children: ReactNode }) => (
-  <Link
-    px={2}
-    py={1}
-    rounded={'md'}
-    _hover={{
-      textDecoration: 'none',
-      bg: useColorModeValue('gray.200', 'gray.700'),
-    }}
-    href={'#'}>
-    {children}
-  </Link>
-);
+const Nav: React.FC = () => {
+  const router = useRouter();
 
-export default function Nav() {
-  const { colorMode, toggleColorMode } = useColorMode();
-  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <>
-      <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
-        <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-          <Box >
+    <Box
+      bg={useColorModeValue("gray.100", "gray.900")}
+      px={4}
+      marginBottom={20}
+    >
+      <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
+        <Box>
+          <Link
+            href={router.pathname.startsWith("/dashboard") ? "/dashboard" : "/"}
+          >
             <Image src={DAL_rvsd} alt="logo" width={60} height={60} />
-          </Box>
+          </Link>
+        </Box>
 
-          <Flex alignItems={'center'}>
-            <Stack direction={'row'} spacing={7}>
-            
-            <Link href="/">Home</Link>
-            <Link href="/about">About</Link>
-            <Link href="/dao">Join The DAO</Link>
+        <Flex>
+          <Stack
+            direction={"row"}
+            spacing={7}
+            display="flex"
+            alignItems="center"
+          >
+            {!router.pathname.startsWith("/dashboard") && (
+              <>
+                <Link href="/">Home</Link>
+                <Link href="/about">About</Link>
+                <Link href="/dao">Join The DAO</Link>
+              </>
+            )}
 
-            <Link href="/publisher">Manage</Link>
-            <Link href="/memdashboard">Dashboard</Link>
-            <Link href="/createnft">Create</Link>
-            <Link href="/verify">Verify</Link>
-            <Link href="/governance">Governance</Link>
+            {router.pathname.startsWith("/dashboard") && (
+              <>
+                {/** TODO: Use a conditional based on user role here to determine what navbar items they see,
+                 *   DO NOT create another navbar please :) */}
+                <Link href="/dashboard/manage">Manage</Link>
+                <Link href="/dashboard/create-nft">Create</Link>
+                <Link href="/dashboard/verify">Verify</Link>
+                <Link href="/dashboard/governance">Governance</Link>
+              </>
+            )}
 
-              <Button onClick={toggleColorMode}>
-                {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
-              </Button>
+            {/* IMPORTANT: We don't need to support this right now, there's a CSS flash of the light theme anyway */}
+            {/* <Button onClick={toggleColorMode}>
+                {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
+              </Button> */}
 
-              <Menu>
+            <Menu>
               <MetamaskConnectButton />
-                {/* <MenuButton
-                  as={Button}
-                  rounded={'full'}
-                  variant={'link'}
-                  cursor={'pointer'}
-                  minW={0}>
-                  <Avatar
-                    size={'sm'}
-                    src={'https://avatars.dicebear.com/api/male/username.svg'}
-                  />
-                </MenuButton> */}
-
-                {/* <MenuList alignItems={'center'}>
-                  <br />
-                  <Center>
-                    <Avatar
-                      size={'2xl'}
-                      src={'https://avatars.dicebear.com/api/male/username.svg'}
-                    />
-                  </Center>
-                  <br />
-                  <Center>
-                    <p>Username</p>
-                  </Center>
-                  <br />
-                  <MenuDivider />
-                  <MenuItem>Your Servers</MenuItem>
-                  <MenuItem>Account Settings</MenuItem>
-                  <MenuItem>Logout</MenuItem>
-                </MenuList> */}
-              </Menu>
-            </Stack>
-          </Flex>
+            </Menu>
+          </Stack>
         </Flex>
-      </Box>
-    </>
+      </Flex>
+    </Box>
   );
-}
+};
+
+export default Nav;

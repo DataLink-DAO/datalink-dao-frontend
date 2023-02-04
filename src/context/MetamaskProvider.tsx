@@ -31,36 +31,13 @@ export const MetamaskProvider: React.FC<{ children: React.ReactNode }> = ({
   const [contractPublisher, setContractPublisher] = React.useState<
     string | null
   >(null);
+
   React.useEffect(() => {
     if (window.ethereum && window.ethereum.selectedAddress) {
       setAddress(window.ethereum.selectedAddress);
       handleSetPublisherContract();
     }
   }, []);
-
-  /**
-   * - redirect to dashboard on connected
-   * - redirect to home on unconnected
-   * */
-  const redirectOnAction = React.useCallback(() => {
-    if (!address) {
-      if (router.pathname.startsWith("/dashboard")) {
-        router.push("/");
-        return;
-      }
-    }
-
-    if (address) {
-      if (router.pathname === "/") {
-        router.push("/dashboard");
-        return;
-      }
-    }
-  }, [address, router]);
-
-  React.useEffect(() => {
-    redirectOnAction();
-  }, [redirectOnAction]);
 
   React.useEffect(() => {
     if (window.ethereum) {
@@ -77,11 +54,12 @@ export const MetamaskProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const handleSetAddress = async () => {
     if (window.ethereum) {
-      handleSetPublisherContract();
       window.ethereum
         .request({ method: "eth_requestAccounts" })
         .then((result: string[]) => {
           setAddress(result[0]);
+          handleSetPublisherContract();
+          router.push("/dashboard");
         });
     }
   };
@@ -94,7 +72,7 @@ export const MetamaskProvider: React.FC<{ children: React.ReactNode }> = ({
         const deployedPublisherContract =
           "0x7bfbD50D127c3e3e29A61Badf083F5CE2A0D5170";
         const signer = provider.getSigner();
-        let contract = new ethers.Contract(
+        const contract = new ethers.Contract(
           deployedPublisherContract,
           PUBLISHER_NFT_ABI,
           signer
@@ -106,6 +84,7 @@ export const MetamaskProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const handleDisconnect = () => {
     setAddress(null);
+    if (router.pathname.startsWith("/dashboard")) return router.push("/");
   };
 
   return (
