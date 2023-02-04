@@ -68,9 +68,7 @@ const CustomTable: React.FC<Props> = ({ columns, data }) => {
                           <Button
                             colorScheme="#f8f8f800"
                             onClick={() =>
-                              router.push(
-                                `/dashboard/manage/details/${cell.row.original.id}`
-                              )
+                              router.push(`/dashboard/manage/details/1`)
                             }
                           >
                             🔍
