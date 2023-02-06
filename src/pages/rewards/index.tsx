@@ -9,33 +9,38 @@ import {
     SimpleGrid,
     Text,
   } from "@chakra-ui/react";
+  import agreement from "./agreement.jpg";
   import Image from "next/image";
   import Navbar from "@/components/Navbar";
   import Footer from "@/components/Footer";
   import Hero from "@/components/Hero";
+  import Contact from "@/components/Contact";
+  import SimpleThreeColumns from "@/components/ThreeColumns";
   
-  const OnboardSuccess = () => {
+  const Rewards = () => {
     return (
       <div className="about">
   
         <Navbar />
   
-        <Container maxW="80%" centerContent>
+        <Hero />
   
-          <br /><br /><br />
-            <Text as={'span'} color={'gray.600'} fontWeight={500} fontSize={{ base: 'xl', sm: '2xl', md: '3xl' }}>
-            <Text as={'span'} fontWeight={700} color={'blue.400'}>Success</Text>, You will be Onboarded after a short review by the DAO jury.
-            </Text>
-
-            <br /><br /><br />
-
-            
+        <Container maxW="80%" centerContent>
+          
+          <Card alignItems="center">
+                <Image src={''} alt="logo" width={800} height={800} />
+          </Card>
+  
+          <br /><br /><br /><br /><br /><br />
+  
         </Container>
+  
+  
         
         <Footer />
       </div>
     );
   };
   
-  export default OnboardSuccess;
+  export default Rewards;
   

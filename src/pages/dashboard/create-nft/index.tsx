@@ -74,20 +74,21 @@ const Createnft = () => {
       <Navbar />
 
       <Box p={4}>
-        <Text fontSize="4xl" style={{ fontWeight: "600" }}>
+        <Text fontSize="4xl" color={'blue.500'} fontWeight={700}>
           DataLink DAO Data Standards
         </Text>
-        <br /><br />
-        <Text fontSize="xl">
-          At DataLink we have the highest data standards...
-        </Text>
-        <Text fontSize="xl">
+
+        {/* <Text fontSize="2xl">
+          At DataLink we put data security first.
+        </Text> */}
+        <br />
+        <Text fontSize="2xl">
           After tokenization, your data will have new value streams unlocked
-          powered by blockchain and crypto tech.
+          powered by blockchain and crypto technologies.
         </Text>
         <br /><br />
         <Flex gap="2">
-          <Text fontSize="xl" style={{ fontWeight: "300" }}>
+          <Text fontSize="xl" style={{ fontWeight: "400" }}>
             Upload csv with following fields to match:
           </Text>
 
@@ -324,7 +325,7 @@ const Createnft = () => {
               </StyledFormLabel>
               <Select {...register("diplomaVerification")}>
                 <option value="Yes">Yes</option>
-                <option value="No">No Yet</option>
+                <option value="No">Not Yet</option>
               </Select>
             </StyledInputGroup>
 

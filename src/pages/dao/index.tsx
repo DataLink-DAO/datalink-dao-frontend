@@ -14,6 +14,7 @@ import {
 import { useRouter } from "next/router";
 import Footer from "@/components/Footer";
 import Image from "next/image";
+import DalDao2 from "./daldao2.png";
 import a1920 from "./a1920.jpg";
 import w79 from "./w79.jpg";
 
@@ -23,26 +24,30 @@ const JoinDao = () => {
   return (
     <>
       <Navbar />
-          <Container >
-        <Card
-          alignItems="center"
-          justifyContent="center"
-          fontSize="4em"
-          padding={20}
-          marginTop={40}
-          marginBottom={20}
-          boxShadow='dark-lg' p='6' rounded='md' bg='white'
-          w="100%"
-          mx="auto"
-        >
-          <Heading marginTop={10} marginBottom={20}>Join DataLink DAO</Heading>
+
+        <Container>
+          <Image src={DalDao2} alt='img' width={800} height={800}/>
+
+          <Card
+            alignItems="center"
+            justifyContent="center"
+            fontSize="4em"
+            padding={0}
+            marginTop={0}
+            marginBottom={20}
+            boxShadow='dark-lg' p='6' rounded='md' bg='white'
+            w="100%"
+            mx="auto"
+          >
+          <Heading marginTop={10} marginBottom={10} fontSize="4xl" color="blue.600">Join DataLink DAO!</Heading>
+
           <Box display="flex" columnGap={10} marginBottom={10}>
             <Button
               bg="red"
               color="white"
               alignItems="center"
               justifyContent="center"
-              boxShadow='dark-lg' p='6' rounded='md'
+              boxShadow='dark-lg' p='6' rounded='lg'
               colorScheme='red' 
               variant='solid'
               onClick={() => router.push("/dao/publisher")}
@@ -55,7 +60,7 @@ const JoinDao = () => {
               color="white"
               alignItems="center"
               justifyContent="center"
-              boxShadow='dark-lg' p='6' rounded='md'
+              boxShadow='dark-lg' p='6' rounded='lg'
               colorScheme='messenger' 
               variant='solid'
               onClick={() => router.push("/dao")}
@@ -66,11 +71,12 @@ const JoinDao = () => {
         </Card>
         </Container>
 
-        <br /><br /><br />
+        <br />
 
-        <Container display="flex" maxWidth='70%' alignItems='center' gap='20'>
+        <Container maxWidth='50%' alignItems='center' gap='10'>
+
         <Card alignItems="center" mx="auto" boxShadow='dark-lg' p='6' rounded='md' bg='white'>
-        <Image src={a1920} alt='img' width={800} height={800}/>
+          <Image src={a1920} alt='img' width={800} height={800}/>
           <CardHeader>
             <Heading
               size="lg"
@@ -113,9 +119,11 @@ const JoinDao = () => {
             </Text>
           </CardHeader>
         </Card>
+        
+        <br /><br /><br />
 
         <Card alignItems="center" mx="auto" boxShadow='dark-lg' p='6' rounded='md' bg='white'>
-        <Image src={w79} alt='img' width={800} height={800}/>
+          <Image src={w79} alt='img' width={800} height={800}/>
           <CardHeader>
             <Heading
               size="lg"

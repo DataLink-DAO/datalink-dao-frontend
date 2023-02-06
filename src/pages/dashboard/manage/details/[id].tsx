@@ -39,11 +39,12 @@ const Details: React.FC<{ id: string }> = (props) => {
     <>
       <Navbar />
       <Container>
-        <Text>NFT Details</Text>
-        <Heading as="h3" marginBottom={10}>
+        <Text color={'blue.600'} fontWeight={800} fontSize={{ base: '2xl', sm: '3xl', md: '4xl' }}>NFT Details</Text>
+        <br />
+        <Heading marginBottom={10} fontSize={{ base: 'xl', sm: 'xl', md: '2xl' }}>
           NFT/Campaign Name
         </Heading>
-        <Box display="flex" flexDirection="column" rowGap={2}>
+        <Box display="flex" flexDirection="column" rowGap={3}>
           {textLines}
         </Box>
       </Container>

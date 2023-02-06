@@ -42,7 +42,7 @@ const MetamaskConnectButton: React.FC<{
           style={style}
           colorScheme="orange"
         >
-          Go To App
+          Go To Dashboard
         </Button>
       );
     }

@@ -13,8 +13,11 @@ import {
   import Navbar from "@/components/Navbar";
   import Footer from "@/components/Footer";
   import Hero from "@/components/Hero";
+  import { useRouter } from "next/router";
   
-  const OnboardSuccess = () => {
+  const StorageDealSuccess = () => {
+    const router = useRouter();
+
     return (
       <div className="about">
   
@@ -24,7 +27,10 @@ import {
   
           <br /><br /><br />
             <Text as={'span'} color={'gray.600'} fontWeight={500} fontSize={{ base: 'xl', sm: '2xl', md: '3xl' }}>
-            <Text as={'span'} fontWeight={700} color={'blue.400'}>Success</Text>, You will be Onboarded after a short review by the DAO jury.
+              <Text as={'span'} fontWeight={700} color={'blue.400'}>Success</Text>
+            , Your storage plan was created. Start Tokenizing data 
+              <Text onClick={() => router.push("/dashboard/create-nft")} as={'span'} fontWeight={700} color={'blue.400'} _hover={{ color: "blue.600" }}> right now.
+              </Text>
             </Text>
 
             <br /><br /><br />
@@ -37,5 +43,5 @@ import {
     );
   };
   
-  export default OnboardSuccess;
+  export default StorageDealSuccess;
   

@@ -54,7 +54,7 @@ const Nav: React.FC = () => {
                 <Link href="/dashboard/manage">Manage</Link>
                 <Link href="/dashboard/create-nft">Create</Link>
                 <Link href="/dashboard/verify">Verify</Link>
-                <Link href="/dashboard/governance">Rewards</Link>
+                <Link href="/rewards">Rewards</Link>
               </>
             )}
 

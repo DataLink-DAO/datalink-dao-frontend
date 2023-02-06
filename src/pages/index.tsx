@@ -12,6 +12,7 @@ import {
 } from "@chakra-ui/react";
 import Head from "next/head";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import DAL_rvsd from "../components/DAL_rvsd.png";
 import { useRouter } from "next/router";
@@ -32,36 +33,23 @@ const Home: React.FC = () => {
         {/* DATADAO LOGO */}
 
         <Box className="logo" display='flex' mt='2' alignItems='center'>
-          <Image src={DAL_rvsd} alt="logo" width={500} height={500} />
+          <Image src={DAL_rvsd} alt="logo" width={480} height={480} />
         </Box>
 
-        <br />
-        <br />
-        <br />
-        <br />
-
-
-        <Text fontSize="4xl" color='black' as='b'>
+        {/* <Text fontSize="4xl" color='black' as='b'>
         Buidling the most accessible Web3 data validation and data-sharing tools.
-        </Text>
+        </Text> */}
 
-        <br />
-        <br />
-        <br />
+        <br /><br /><br />
 
-        <Text fontSize="6xl" color='blue' as='b'>
+        <Text fontSize="6xl" color='blue.600' as='b'>
         Learn more about the newest DAO in town!
         </Text>
 
-        {/* <Card fontSize="2xl" w="50%" mx="auto" boxShadow='dark-lg' p='6' rounded='md' display='flex' mt='2' alignItems='center'>
-          ...
-        </Card> */}
-
-        <br />
-        <br />
+        <br /><br />
 
         <Button
-          bg="blue"
+          bg="blue.500"
           color="white"
           colorScheme='messenger' 
           variant='solid'
@@ -73,23 +61,18 @@ const Home: React.FC = () => {
           alignItems="center"
           justifyContent="center"
           display='flex' mt='2'
-          boxShadow='dark-lg' p='6' rounded='md'
+          boxShadow='dark-lg' p='8' rounded='xl'
           onClick={() => router.push("/about")}
         >
-          {/* <Button1 /> */}
           Learn More
         </Button>
 
         <div className="homepage-footer">
-          {/* <Footer /> */}
-
-          {/* <h2>DataLink DAO</h2> */}
-          {/* <h3>Learn More about the newest DAO in town</h3> */}
-          {/* <button>Learn More</button> */}
-          <br />
-          <br />
+          <br /><br />
         </div>
       </Container>
+      
+      <Footer />
     </>
   );
 };

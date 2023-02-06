@@ -16,78 +16,150 @@ import {
     Td,
     TableCaption,
     TableContainer,
+    Container,
+    Box,
+    Flex,
+    Spacer,
+    Select,
+    FormControl,
+    FormLabel,
+    Input,
+    FormHelperText,
+    Tooltip,
+    InputGroup,
+    styled,
   } from "@chakra-ui/react";
-  import { Input } from '@chakra-ui/react'
   import Image from "next/image";
   import Navbar from "@/components/Navbar";
   import Footer from "@/components/Footer";
   import { useDropzone } from "react-dropzone"
-  import React from 'react'
+  import React, { useState } from "react";
 import Dropzone from 'react-dropzone'
+import { useWallet } from "../../../context/MetamaskProvider";
+import MetamaskConnectButton from "@/components/MetamaskConnectButton";
+import { QuestionIcon } from "@chakra-ui/icons";
+import { useForm } from "react-hook-form";
+import { Contract } from "ethers";
 
   
   const Verify = () => {
+    const [image, setImage] = useState(null);
+    const [imageName, setImageName] = useState(null);
+    const [diplomaVerification, setDiplomaVerification] = useState(null);
+    const [transcript, setTranscript] = useState(null);
+  
+    const {
+      register,
+      handleSubmit,
+      watch,
+      formState: { errors },
+    } = useForm();
+  
+    const onSubmit = async (data: any) => {
+      console.log("data: ", data);
+      // TODO: Send data to backend or SC, await response and redirect to dashboard
+    };
+  
+    const handleImage = (event: any) => {
+      setImage(event.target.files[0]);
+      setImageName(event.target.files[0].name);
+    };
+  
+    const handleTranscript = (event: any) => {
+      // setIm(event.target.files[0]);
+      setTranscript(event.target.files[0]);
+    };
+  
     return (
       <div className="about">
   
         <Navbar />
-        <div className="sample">
-  
-          <SimpleGrid
-            spacing={4}
-            templateColumns="repeat(auto-fill, minmax(750px, 1fr))"
-            margin="5em"
-          >
-  
-            <Card w="100%" alignItems="center" mx="auto">
-              <CardHeader>
-                <Heading size="lg" >
-                  {" "}
-                  Verify a Document or Credential now!
-                </Heading>
-              </CardHeader>
-            </Card>
 
-            <Card>
-              {/* <Image src={agreement} alt="logo" width={600} height={600} /> */}
-            </Card>
-            
-          </SimpleGrid>
-        </div>
-
-        {/*SEARCH BOX*/}
-        {/*HARDCODED*/}
-        <Input marginLeft="2.5rem" w="50%" placeholder='Search for a credential ID' />
-
-        <br />
-        <br />
-        {/*FILE UPLOAD */}
-        {/*NEEDS TO BE TEMP STORED UNTIL VALIDATED*/}
         <div>
-            <Dropzone onDrop={acceptedFiles => console.log(acceptedFiles)}>
-                {({getRootProps, getInputProps}) => (
-                    <section>
-                    <div {...getRootProps()}>
-                        <input {...getInputProps()} />
-                        <p>Click this text to select file or Drag n Drop file below to validate</p>
-                        <br />
-                        {/*vvv this card does absolutely nothing...only for show vvv */}
-                        <Card fontSize="9xl" alignItems="center"  w="100%" h="200px" maxW="960px" mx="auto">+
-                        </Card>
-                    </div>
-                    </section>
-                )}
-            </Dropzone>
+        <Container centerContent>
+            <Text as={'span'} fontSize={34} fontWeight={700} color={'blue.400'}>
+                  Verify a Document or Credential now!
+            </Text>
+
+            <br /><br />
+
+            <FormControl p={1}>
+              <Flex as='b' maxW={60} alignContent="center" fontSize={22} boxShadow='dark-lg' p='6' rounded='lg' _hover={{
+          bg: 'blue.100',
+        }}>
+                <label htmlFor="formFileImage">+ Upload to Verify</label>
+              </Flex>
+              <input
+                type="file"
+                id="formFileImage"
+                onChange={handleImage}
+                defaultValue={imageName ? imageName : ""}
+                style={{ display: "none" }}
+                required
+              />
+            </FormControl>
+            </Container>
         </div>
 
-        <br />
-        <br />
-        <br />
+        <br /><br /><br />
 
+      <Container centerContent>
+        <Box height="100%" w="100%">
+          {image ? (
+            <Text fontSize="xl">File to be validated.</Text>
+          ) : (
+            <>
+              <Text fontSize="md">Your file will display here.</Text>
+              <Image
+                src="/placeholder.png"
+                alt="description"
+                width={600}
+                height={600}
+                style={{
+                  objectFit: "contain",
+                  paddingTop: "2rem",
+                }}
+              />
+            </>
+          )}
+
+          {image && (
+            <Image
+              src={image ? URL.createObjectURL(image) : ""}
+              alt="description"
+              width={600}
+              height={600}
+              style={{
+                objectFit: "contain",
+                paddingTop: "2rem",
+              }}
+            />
+          )}
+        </Box>
+
+        <br /><br />
+
+        <Button
+              bg="blue.500"
+              color="white"
+              alignItems="center"
+              justifyContent="center"
+              boxShadow='dark-lg' p='6' rounded='lg'
+              colorScheme='messenger' 
+              variant='solid'
+            >
+              Submit
+            </Button>
+            </Container>
+
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+
+        <Container>
         {/*HARDCODED*/}
         <TableContainer>
             <Table variant='simple'>
-                <TableCaption>Top Data Publishers in DataLink DAO</TableCaption>
+                <TableCaption></TableCaption>
                 <Thead>
                 <Tr>
                     <Th>Top Verifiers</Th>
@@ -112,9 +184,9 @@ import Dropzone from 'react-dropzone'
                 </Tfoot>
             </Table>
         </TableContainer>
-  
-        <br />
-        <br />
+        
+        </Container>
+        <br /><br />
 
         <Footer />
       </div>

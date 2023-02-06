@@ -61,10 +61,12 @@ export default function CallToActionWithAnnotation() {
             alignSelf={'center'}
             position={'relative'}>
             <Button
+              fontSize='24px'
               colorScheme={'blue'}
               bg={'blue.400'}
               rounded={'full'}
-              px={6}
+              px={12}
+              py={8}
               onClick={() => router.push("/dao")}
               _hover={{
                 bg: 'blue.500',

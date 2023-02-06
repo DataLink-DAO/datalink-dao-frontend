@@ -142,18 +142,34 @@ const Manage = () => {
   const data = React.useMemo(
     () => [
       {
-        nft: "Harvard Class of 98 Diplomas",
+        nft: "Finance Class of 2021",
         type: "Diploma",
-        status: "152/207",
-        expires: "May 2001",
+        status: "152/174",
+        expires: "Soulbound",
         details: <Button colorScheme="#f8f8f800">🔍</Button>,
         burn: <Button colorScheme="#f8f8f800">🔥</Button>,
       },
       {
-        nft: "Harvard Class of 98 Diplomas",
+        nft: "Internationl Business Class of 2021",
         type: "Diploma",
-        status: "152/207",
-        expires: "May 2001",
+        status: "85/103",
+        expires: "Soulbound",
+        details: <Button colorScheme="#f8f8f800">🔍</Button>,
+        burn: <Button colorScheme="#f8f8f800">🔥</Button>,
+      },
+      {
+        nft: "CPR Fall 2019 Class",
+        type: "Certification",
+        status: "23/23",
+        expires: "December 2024",
+        details: <Button colorScheme="#f8f8f800">🔍</Button>,
+        burn: <Button colorScheme="#f8f8f800">🔥</Button>,
+      },
+      {
+        nft: "Harvard Class of 1998 Diplomas",
+        type: "Diploma",
+        status: "2/207",
+        expires: "Soulbound",
         details: <Button colorScheme="#f8f8f800">🔍</Button>,
         burn: <Button colorScheme="#f8f8f800">🔥</Button>,
       },
@@ -183,20 +199,34 @@ const Manage = () => {
           </Box>
           <Flex>
             <Box p="4">
-              <Heading as="h2" size="xl">
+              <Heading as="h2" size="2xl" color={'blue.500'} fontWeight={700}>
                 Overview
               </Heading>
 
-              <Heading as="h2" size="xl">
+              <br /><br />
+
+              <Heading as="h2" size="xl" color={'gray.700'} fontWeight={500}>
                 Harvard Business School
               </Heading>
             </Box>
             <Spacer />
             <Box p="4">
               <Button
+                marginRight={20}
                 size="md"
                 height="48px"
                 width="200px"
+                bg={'blue.400'}
+                color={'white'}
+                boxShadow={
+                  '0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'
+                }
+                _hover={{
+                  bg: 'blue.500',
+                }}
+                _focus={{
+                  bg: 'blue.500',
+                }}
                 onClick={() => router.push("/dashboard/create-nft")}
               >
                 Create NFT
