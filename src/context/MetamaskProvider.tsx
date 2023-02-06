@@ -1,7 +1,8 @@
 import { useRouter } from "next/router";
 import React from "react";
 const { ethers } = require("ethers");
-import { PUBLISHER_NFT_ABI } from "../abis/PublisherNft";
+// import { PUBLISHER_NFT_ABI } from "../abis/PublisherNft";
+import { DATALINK_ABI } from "../abis/Datalink";
 
 type MetamaskMaskProviderValues = {
   address: string | null;
@@ -69,17 +70,62 @@ export const MetamaskProvider: React.FC<{ children: React.ReactNode }> = ({
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const { chainId } = await provider.getNetwork();
       if (chainId == "3141") {
+        // const deployedPublisherContract =
+        //   "0x7bfbD50D127c3e3e29A61Badf083F5CE2A0D5170";
         const deployedPublisherContract =
-          "0x7bfbD50D127c3e3e29A61Badf083F5CE2A0D5170";
+          "0x33b4c27Bb4D467f3a7AA806162E5211B7507A42c";
         const signer = provider.getSigner();
         const contract = new ethers.Contract(
           deployedPublisherContract,
-          PUBLISHER_NFT_ABI,
+          DATALINK_ABI,
           signer
         );
         setContractPublisher(contract);
+        getAllNFTS(contract);
       }
     }
+  };
+
+  const getAllNFTS = async (any: contract) => {
+    const temp = [];
+    if (contractPublisher) {
+      const res = await contractPublisher.getAllNfts();
+      console.log(
+        "🚀 ~ file: HomeGallery.js ~ line 33 ~ getFundraisers ~ res",
+        res
+      );
+
+      // for (let i = 0; i < res.length; i++) {
+      //   let obj = {}
+      //   // data from smart contract
+      //   const organizer = res[i][4]
+      //   const totalDonations = res[i]['totalDonations'].toString()
+      //   const fundraiserId = res[i].id.toString()
+
+      //   // fetchs data from nftStorage
+      //   const nftStorageURL = res[i][1]
+      //   let getNFTStorageData = await fetch(nftStorageURL)
+      //   let fundraiserData = await getNFTStorageData.json()
+
+      //   //  fundraiser data
+      //   const img = getImage(fundraiserData.image)
+      //   // gets data from nftStorage
+      //   const data = JSON.parse(fundraiserData.description)
+      //   // builds fundraiser data
+      //   obj.fundraiserId = fundraiserId
+      //   obj.organizer = organizer
+      //   obj.totalDonations = totalDonations
+      //   obj.title = fundraiserData.name
+      //   obj.image = img
+      //   obj.description = data.description
+      //   obj.category = data.category
+      //   obj.targetAmmount = data.targetAmmount
+      //   obj.creationDate = data.creationDate
+      //   temp.push(obj)
+      // }
+    }
+
+    // setData(temp)
   };
 
   const handleDisconnect = () => {
