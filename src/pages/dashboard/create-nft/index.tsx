@@ -54,17 +54,17 @@ const Createnft = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: any) => {
     console.log("data: ", data);
     // TODO: Send data to backend or SC, await response and redirect to dashboard
   };
 
-  const handleImage = (event) => {
+  const handleImage = (event: any) => {
     setImage(event.target.files[0]);
     setImageName(event.target.files[0].name);
   };
 
-  const handleTranscript = (event) => {
+  const handleTranscript = (event: any) => {
     // setIm(event.target.files[0]);
     setTranscript(event.target.files[0]);
   };
@@ -74,9 +74,10 @@ const Createnft = () => {
       <Navbar />
 
       <Box p={4}>
-        <Text fontSize="2xl" style={{ fontWeight: "600" }}>
+        <Text fontSize="4xl" style={{ fontWeight: "600" }}>
           DataLink DAO Data Standards
         </Text>
+        <br /><br />
         <Text fontSize="xl">
           At DataLink we have the highest data standards...
         </Text>
@@ -84,7 +85,7 @@ const Createnft = () => {
           After tokenization, your data will have new value streams unlocked
           powered by blockchain and crypto tech.
         </Text>
-
+        <br /><br />
         <Flex gap="2">
           <Text fontSize="xl" style={{ fontWeight: "300" }}>
             Upload csv with following fields to match:
@@ -99,13 +100,14 @@ const Createnft = () => {
           </Button>
         </Flex>
       </Box>
+      <br /><br />
 
       <SimpleGrid minChildWidth="120px" spacing="40px">
         {/* FORM */}
         <Box height="100%" w="100%" pb={10}>
           <Container>
             <FormControl p={1}>
-              <Flex alignContent="center">
+              <Flex as='b' alignContent="center" boxShadow='dark-lg' p='4' rounded='md'>
                 <label htmlFor="formFileImage">+ Upload Diploma Image</label>
               </Flex>
               <input
@@ -118,8 +120,10 @@ const Createnft = () => {
               />
             </FormControl>
 
+            <br />
+
             <FormControl p={1}>
-              <Flex alignContent="center">
+              <Flex as='b' alignContent="center" boxShadow='dark-lg' p='4' rounded='md'>
                 <label htmlFor="formFileTranscript">+ Upload Transcripts</label>
               </Flex>
               <input
@@ -131,6 +135,8 @@ const Createnft = () => {
                 required
               />
             </FormControl>
+
+            <br /><br />
 
             <StyledInputGroup>
               <StyledFormLabel>

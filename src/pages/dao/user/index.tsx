@@ -18,7 +18,7 @@ const StyledInputGroup = styled(InputGroup, {
   },
 });
 
-const DaoUser: React.FC = () => {
+const DaoPublisher: React.FC = () => {
   const {
     register,
     handleSubmit,
@@ -26,7 +26,7 @@ const DaoUser: React.FC = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: any) => {
     console.log("data: ", data);
     // TODO: Send data to backend or SC, await response and redirect to dashboard
   };
@@ -90,4 +90,4 @@ const DaoUser: React.FC = () => {
   );
 };
 
-export default DaoUser;
+export default DaoPublisher;

@@ -1,15 +1,18 @@
 import React from "react";
 import Image from "next/image";
 import {
+  Box,
   Button,
   Card,
   CardBody,
   CardHeader,
   Container,
   Heading,
+  Text
 } from "@chakra-ui/react";
 import Head from "next/head";
 import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
 import DAL_rvsd from "../components/DAL_rvsd.png";
 import { useRouter } from "next/router";
 
@@ -25,28 +28,34 @@ const Home: React.FC = () => {
       </Head>
       <Navbar />
 
-      <Container maxW="lg">
+      <Container maxW="70%" centerContent>
         {/* DATADAO LOGO */}
-        <br />
-        <div className="logo">
+
+        <Box className="logo" display='flex' mt='2' alignItems='center'>
           <Image src={DAL_rvsd} alt="logo" width={500} height={500} />
-        </div>
+        </Box>
 
         <br />
         <br />
-
-        <Card fontSize="2xl" w="100%" mx="auto">
-          Building the next generation of data validation and data-sharing tools
-          and infrastructure.
-        </Card>
-
         <br />
         <br />
 
-        <Card fontSize="2xl" w="100%" mx="auto">
-          Contact support@datalinkdao.com to talk more about our solutions in
-          data validation.
-        </Card>
+
+        <Text fontSize="4xl" color='black' as='b'>
+        Buidling the most accessible Web3 data validation and data-sharing tools.
+        </Text>
+
+        <br />
+        <br />
+        <br />
+
+        <Text fontSize="6xl" color='blue' as='b'>
+        Learn more about the newest DAO in town!
+        </Text>
+
+        {/* <Card fontSize="2xl" w="50%" mx="auto" boxShadow='dark-lg' p='6' rounded='md' display='flex' mt='2' alignItems='center'>
+          ...
+        </Card> */}
 
         <br />
         <br />
@@ -54,10 +63,17 @@ const Home: React.FC = () => {
         <Button
           bg="blue"
           color="white"
-          w="45%"
+          colorScheme='messenger' 
+          variant='solid'
+          w="25%"
+          gap='4'
+          mb={4}
+          py={12}
           fontSize="3xl"
           alignItems="center"
           justifyContent="center"
+          display='flex' mt='2'
+          boxShadow='dark-lg' p='6' rounded='md'
           onClick={() => router.push("/about")}
         >
           {/* <Button1 /> */}

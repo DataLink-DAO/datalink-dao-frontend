@@ -164,7 +164,11 @@ const Manage = () => {
 
   console.log("____________contractPublisher", contractPublisher);
   if (!contractPublisher) {
-    return <p>Please connect your wallet</p>;
+    return <div >
+      <br />
+      <p style={{ padding: "1em", color: "red", fontWeight:"bolder", fontSize: "28px"}}>Please connect your wallet to the Filecoin Hyperspace Testnet to continue.</p>
+      <a style={{ padding: "1.5em", color: "blue", fontStyle: "italic", fontWeight:"bold", fontSize: "20px"}} href="https://chainlist.org/chain/3141">Filecoin - Hyperspace testnet RPC and Chain settings | Chainlist</a>
+    </div>;
   }
 
   return (

@@ -50,10 +50,11 @@ const Nav: React.FC = () => {
               <>
                 {/** TODO: Use a conditional based on user role here to determine what navbar items they see,
                  *   DO NOT create another navbar please :) */}
+                <Link href="/">Home</Link>
                 <Link href="/dashboard/manage">Manage</Link>
                 <Link href="/dashboard/create-nft">Create</Link>
                 <Link href="/dashboard/verify">Verify</Link>
-                <Link href="/dashboard/governance">Governance</Link>
+                <Link href="/dashboard/governance">Rewards</Link>
               </>
             )}
 

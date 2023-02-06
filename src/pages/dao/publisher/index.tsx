@@ -11,6 +11,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/router";
 
 const StyledInputGroup = styled(InputGroup, {
   baseStyle: {
@@ -18,7 +19,9 @@ const StyledInputGroup = styled(InputGroup, {
   },
 });
 
-const DaoPublisher: React.FC = () => {
+const DaoUser: React.FC = () => {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -26,7 +29,7 @@ const DaoPublisher: React.FC = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: any) => {
     console.log("data: ", data);
     // TODO: Send data to backend or SC, await response and redirect to dashboard
   };
@@ -36,9 +39,9 @@ const DaoPublisher: React.FC = () => {
       <Navbar />
       <Container display="flex" flexDirection="column" rowGap={10}>
         <Heading>Hello, Publisher!</Heading>
-        <Text>
+        <Text color={'gray.600'} fontWeight={500} fontSize={{ base: 'md', sm: 'l', md: 'xl' }}>
           Verify your company and create tokenized, secure data for endless
-          monetization possibilities
+          monetization possibilities.
         </Text>
         <form
           style={{
@@ -49,11 +52,11 @@ const DaoPublisher: React.FC = () => {
           onSubmit={handleSubmit(onSubmit)}
         >
           <StyledInputGroup>
-            <FormLabel>Company Name</FormLabel>
+            <FormLabel>Company Name{`*`}</FormLabel>
             <Input {...register("companyName")} />
           </StyledInputGroup>
           <StyledInputGroup>
-            <FormLabel>Company Industry</FormLabel>
+            <FormLabel>Company Industry{`*`}</FormLabel>
             <Input {...register("companyIndustry")} />
           </StyledInputGroup>
           <StyledInputGroup>
@@ -69,18 +72,18 @@ const DaoPublisher: React.FC = () => {
             <Input {...register("companyRevenue")} />
           </StyledInputGroup>
           <StyledInputGroup>
-            <FormLabel>Contact Person</FormLabel>
+            <FormLabel>Contact Person{`*`}</FormLabel>
             <Input {...register("contactPerson")} />
           </StyledInputGroup>
           <StyledInputGroup>
-            <FormLabel>Contact Email</FormLabel>
+            <FormLabel>Contact Email{`*`}</FormLabel>
             <Input {...register("contactEmail")} />
           </StyledInputGroup>
           <StyledInputGroup>
             <FormLabel>Contact Phone Number</FormLabel>
             <Input {...register("contactPhoneNumber")} />
           </StyledInputGroup>
-          <Button colorScheme="blue" marginTop={10} width="100%" type="submit">
+          <Button colorScheme="blue" marginTop={10} width="100%" type="submit" onClick={() => router.push("/onboardsuccess")}>
             Onboard
           </Button>
         </form>
@@ -90,4 +93,4 @@ const DaoPublisher: React.FC = () => {
   );
 };
 
-export default DaoPublisher;
+export default DaoUser;
