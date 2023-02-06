@@ -56,7 +56,7 @@ const Details: React.FC<{ id: string }> = (props) => {
 export const getServerSideProps = async (
   context: GetServerSidePropsContext<{ id: string }>
 ) => {
-  const { id } = context.params;
+  const id = context.params;
 
   if (!id) {
     return {

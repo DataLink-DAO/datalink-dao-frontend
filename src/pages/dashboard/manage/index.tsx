@@ -150,7 +150,7 @@ const Manage = () => {
         burn: <Button colorScheme="#f8f8f800">🔥</Button>,
       },
       {
-        nft: "Internationl Business Class of 2021",
+        nft: "International Business Class of 2021",
         type: "Diploma",
         status: "85/103",
         expires: "Soulbound",
